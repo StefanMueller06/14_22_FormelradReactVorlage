@@ -14,7 +14,19 @@ export default function Formelrad() {
     const calculate = (event) => {
         event.preventDefault();
         console.log("calculate");
-        if (values.i === "" && values.r === "") {
+        if (values.u === "" && values.i === "") {
+            /*calculate u and i */
+            setValues(values => ({...values, u: Math.sqrt(values.p * values.r)}));
+            setValues(values => ({...values, i: Math.sqrt(values.p / values.r)}));
+        } else if (values.u === "" && values.r === "") {
+            /*calculate u and r */
+            setValues(values => ({...values, u: values.p / values.i}));
+            setValues(values => ({...values, r: values.p / values.i / values.i}));
+        } else if (values.u === "" && values.p === "") {
+            /*calculate u and p */
+            setValues(values => ({...values, u: values.i * values.r}));
+            setValues(values => ({...values, p: values.i * values.i * values.r}));
+        } else if (values.i === "" && values.r === "") {
             /*calculate i and r */
             setValues(values => ({...values, i: values.p / values.u}));
             setValues(values => ({...values, r: values.u * values.u / values.p}));
